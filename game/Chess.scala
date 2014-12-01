@@ -121,7 +121,7 @@ object Chess extends Game {
     
     val (_, kingLoc) = findKing(board, player)
     val pieces = piecesWithPositions(flipPlayer(player), board, includeKing = false)
-    // TODO needs to be adjusted for en passant and shit
+    
     pieces exists { case (piece, position) => piece canMakeMove (board, position, kingLoc) }
     
   }
@@ -203,7 +203,7 @@ object Chess extends Game {
     }
     
     val newBoard = Vector.tabulate(board.length, board(0).length)(
-        // TODO this will need to be adapted to handle castling, en passant, and pawn promotion
+        
         (x,y) =>
           if (init == (x,y))
             None
