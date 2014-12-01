@@ -23,6 +23,7 @@ object Engine {
   case class Node(left: Tree, val data: Int, right: Tree) extends Tree
   case class Leaf(data: Int) extends Tree
   
+  // the following are all helpers for search and evaluate functions
   private
   def alphaIsLessThan(alpha: Value, v: Int) = alpha match {
     case Pruned => true
@@ -102,6 +103,7 @@ object Engine {
     }
   }
   
+  // give the AB result of a state
   private def evaluate(depth: Int)(ab: AlphaBeta)(state: State)(lastMove: Move): Result =
     status(state) match {
       case Over(Winner(Maxie)) => Val(BestEdge((lastMove, Int.MaxValue)))
@@ -118,6 +120,7 @@ object Engine {
         }
     }
   
+  // search the children of a game state
   @tailrec
   private def search(depth: Int)(ab: AlphaBeta)(state: State)(moves: Vector[Move]): Value = 
     moves match {
